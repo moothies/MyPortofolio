@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Portofolio — Bowo Lubis</title>
+
+  <style>
+    :root{
+      --bg:#0f1724; 
+      --card:#01133ad8; 
+      --muted:#9aa4b2; 
+      --accent:#7c3aed;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    }
+    *{box-sizing:border-box}
+    body{
+  margin:0;
+  min-height:100vh;
+  color:#e6eef8;
+  padding:32px;
+
+  /* 🌍 BACKGROUND IMAGE */
+  background:
+    linear-gradient(
+      rgba(5, 8, 20, 0.055),
+      rgba(5,8,20,.9)
+    ),
+    url("space-bg.jpg") no-repeat center center fixed;
+
+  background-size:cover;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at top, rgba(124,58,237,.25), transparent 45%),
+    radial-gradient(circle at bottom, rgba(79,70,229,.15), transparent 50%);
+  pointer-events:none;
+  z-index:-1;
+}
+
+    
+    .container{max-width:1100px;margin:0 auto}
+
+    header{
+      display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:46px;height:46px;border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),#4f46e5);
+      display:flex;align-items:center;justify-content:center;font-weight:700;
+    }
+
+    .btn{
+      padding:10px 14px;border-radius:10px;
+      background:var(--accent);color:#fff;
+      border:none;cursor:pointer;
+      text-decoration:none;font-weight:600;
+    }
+    .btn.secondary{
+      background:transparent;
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--muted);
+    }
+
+    h1{margin:0 0 6px}
+    p.lead{margin:0;color:var(--muted)}
+
+    .grid{
+      margin-top:28px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:18px;
+    }
+
+    .item{
+      background:var(--card);
+      border-radius:14px;
+      overflow:hidden;
+      cursor:pointer;
+      transition:.3s;
+    }
+    .item:hover{
+      transform:translateY(-4px);
+      box-shadow:0 10px 30px rgba(0,0,0,.4);
+    }
+
+    .thumb{height:180px;background:#111}
+    .thumb img{width:100%;height:100%;object-fit:cover}
+
+    .content{padding:14px}
+    .content h4{margin:0 0 6px}
+    .content p{margin:0;font-size:13px;color:var(--muted)}
+
+    footer{
+      margin-top:40px;
+      display:flex;justify-content:space-between;
+      align-items:center;color:var(--muted);
+    }
+
+    /* MODAL */
+    .modal{
+      position:fixed;inset:0;
+      background:rgba(0,0,0,.75);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:999;
+    }
+    .modal.show{display:flex}
+
+    .modal-content{
+      background:var(--card);
+      border-radius:14px;
+      max-width:700px;width:90%;
+      overflow:hidden;
+      animation:zoom .3s ease;
+      position:relative;
+    }
+
+    @keyframes zoom{
+      from{transform:scale(.9);opacity:0}
+      to{transform:scale(1);opacity:1}
+    }
+
+    .modal img{
+      width:100%;
+      max-height:400px;
+      object-fit:contain;
+      background:#000;
+    }
+
+    .modal-body{padding:16px}
+    .close{
+      position:absolute;
+      top:12px;right:16px;
+      font-size:22px;
+      cursor:pointer;color:#fff;
+    }
+    /* SKILL CARD BOTTOM */
+.skill-card-section{
+  margin-top:70px;
+}
+
+.skill-card{
+  background:linear-gradient(135deg,#3f16f350,#5111e64b);
+  border-radius:26px;
+  padding:32px;
+  color:#fff;
+  box-shadow:0 30px 80px rgba(0,0,0,.45);
+}
+
+.skill-grid-2{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:32px;
+}
+
+.skill-title{
+  margin:0 0 8px;
+  font-size:30px;
+}
+
+.skill-text{
+  font-size:20px;
+  opacity:.9;
+  line-height:1.6;
+}
+
+.badge{
+  display:inline-block;
+  margin-bottom:10px;
+  padding:4px 10px;
+  font-size:12px;
+  border-radius:20px;
+  background:rgba(255,255,255,.25);
+}
+
+.tech-skill{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.tech-skill span,
+.two-col span{
+  background:rgba(255,255,255,.18);
+  padding:8px 12px;
+  border-radius:12px;
+  font-size:18px;
+}
+
+.two-col{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+.tech-skill-grid{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+  gap:18px;
+}
+
+/* CARD */
+.tech-card{
+  background:rgba(255,255,255,.18);
+  border-radius:16px;
+  padding:16px 12px;
+  text-align:center;
+  transition:.3s;
+  backdrop-filter:blur(8px);
+  
+}
+
+.tech-card:hover{
+  transform:translateY(-6px) scale(1.05);
+  background:rgba(255,255,255,.28);
+}
+
+/* LOGO WRAPPER (KUNCI UTAMA) */
+.logo-box{
+  width:100%;
+  height:56px;              /* tinggi konsisten */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:10px;
+}
+
+/* LOGO AUTO FIT */
+.logo-box img{
+  max-width:80%;            /* cegah kebesaran */
+  max-height:80%;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+}
+
+/* TEXT */
+.tech-card span{
+  font-size:20px;
+  font-weight:500;
+  opacity:.95;
+
+}
+
+/* ===== SOFT SKILL & SKILL SET INTERACTIVE ===== */
+.two-col span{
+  cursor:pointer;
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    background .18s ease;
+  box-shadow:
+    0 6px 14px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+/* NIMBUL */
+.two-col span:hover{
+  transform:translateY(-6px) scale(1.05);
+  background:rgba(255,255,255,.28);
+  box-shadow:
+    0 14px 28px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.18);
+}
+
+/* REALISTIC PRESS */
+.two-col span:active{
+  transform:translateY(2px) scale(.95);
+  background:rgba(255,255,255,.35);
+  box-shadow:
+    0 4px 10px rgba(0,0,0,.45),
+    inset 0 3px 6px rgba(0,0,0,.35);
+}
+
+/* MOBILE TAP FEEL */
+@media (hover:none){
+  .two-col span:active{
+    transform:scale(.94);
+  }
+}
+/* ===== TECH SKILL PROGRESS ===== */
+.tech-progress{
+  margin-top:18px;
+}
+
+.tech-row{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:14px;
+}
+
+.tech-row img{
+  width:34px;
+  height:34px;
+  object-fit:contain;
+}
+
+.progress-wrap{
+  flex:1;
+}
+
+.progress-label{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  margin-bottom:6px;
+  color:#e6eef8;
+}
+
+.progress-bar{
+  width:100%;
+  height:10px;
+  background:rgba(255,255,255,.15);
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,#7c3aed,#4f46e5);
+  width:0;
+  animation:fillBar 1.4s ease forwards;
+}
+
+@keyframes fillBar{
+  from{width:0}
+}
+
+
+  </style>
+</head>
+
+<body>
+
+<!-- PROTEKSI LOGIN -->
+<script>
+  if(localStorage.getItem("isLogin") !== "true"){
+    window.location.href = "login.html";
+  }
+</script>
+
+<div class="container">
+
+<header>
+  <div class="brand">
+    <div class="logo">BL</div>
+    <div>
+      <div style="font-weight:700">Bowo Lubis</div>
+      <div style="font-size:12px;color:var(--muted)">Creative Digital</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:10px">
+    <a href="index.html" class="btn secondary">← Kembali</a>
+    <button class="btn secondary" onclick="logout()">Logout</button>
+  </div>
+</header>
+
+<section>
+  <h1>My Project</h1>
+  <p class="lead">Beberapa Project Pilihan Saya</p>
+
+  <div class="grid">
+
+    <div class="item" onclick="openModal(this,'Campaign Instagram','Konten reels & carousel untuk awareness')">
+      <div class="thumb"><img src="Saori Campaign Design.png"></div>
+      <div class="content"><h4>Campaign Instagram</h4><p>Reels & carousel</p></div>
+    </div>
+
+    <div class="item" onclick="openModal(this,'Cover Feed Instagram','Thumbnail & visual Gen Z')">
+      <div class="thumb"><img src="Cover feed.png"></div>
+      <div class="content"><h4>Design Cover</h4><p>Cover design</p></div>
+    </div>
+
+    <div class="item" onclick="openModal(this,'Feed Instagram','Desain feed premium')">
+      <div class="thumb"><img src="Feed Insta.png"></div>
+      <div class="content"><h4>Feed Instagram</h4><p>Visual & copywriting</p></div>
+    </div>
+
+    <div class="item" onclick="openModal(this,'Design Education','Strategi konten & ads')">
+      <div class="thumb"><img src="Apa itu HIPMI 1.png"></div>
+      <div class="content"><h4>Design Education</h4><p>Startup project</p></div>
+    </div>
+
+    <div class="item" onclick="openModal(this,'Design Congrats','Carousel & story template')">
+      <div class="thumb"><img src="ketum bpp.png"></div>
+      <div class="content"><h4>Design Congrats</h4><p>Design system</p></div>
+    </div>
+
+    <div class="item" onclick="openModal(this,'Design Birthday','Engagement & growth')">
+      <div class="thumb"><img src="HBD Ketum PT SUMUT.png"></div>
+      <div class="content"><h4>Design Birthday</h4><p>Growth strategy</p></div>
+    </div>
+
+    <div class="item" onclick="openModal(this,'Design Shoes','Short video high engagement')">
+      <div class="thumb"><img src="speedcat puma 2.png"></div>
+      <div class="content"><h4>Design Brand Shoes</h4><p>Elegant and Luxury Car</p></div>
+    </div>
+
+    <div class="item" onclick="openModal(this,'Design Poster','Story interaktif & CTA')">
+      <div class="thumb"><img src="Poster Kidut.png"></div>
+      <div class="content"><h4>Design Poster</h4><p>Interactive</p></div>
+    </div>
+
+    <div class="item" onclick="openModal(this,'Design Menu','Visual iklan berbayar')">
+      <div class="thumb"><img src="Bowsie.png"></div>
+      <div class="content"><h4>Design Menu</h4><p>Paid ads</p></div>
+    </div>
+
+    <div class="item" onclick="openModal(this,'Design Banner Football','Identitas visual brand')">
+      <div class="thumb"><img src="yamal.png"></div>
+      <div class="content"><h4>Design Banner Football</h4><p>Brand identity</p></div>
+    </div>
+
+    <div class="item" onclick="openModal(this,'Design Banner Football','Animasi konten')">
+      <div class="thumb"><img src="542.png"></div>
+      <div class="content"><h4>Design Banner Football</h4><p>Animated</p></div>
+    </div>
+
+    <div class="item" onclick="openModal(this,'Design Sport Car','Website campaign')">
+      <div class="thumb"><img src="audi jelebew bew.png"></div>
+      <div class="content"><h4>Design Sport Car</h4><p>Campaign site</p></div>
+    </div>
+
+  </div>
+</section>
+<!-- SKILL CARD SECTION -->
+<section class="skill-card-section">
+  <div class="skill-card">
+
+    <div class="skill-grid-2">
+      <!-- LEFT -->
+      <div>
+        <h3 class="skill-title">Education</h3>
+        <span class="badge">2023 - Now</span>
+        <p class="skill-text">Universitas Harapan Medan<br>Teknik Informatika</p>
+
+        <h3 class="skill-title" style="margin-top:24px">Software</h3>
+        <div class="tech-skill-grid">
+
+  <div class="tech-skill-grid">
+
+  <div class="tech-card">
+    <div class="logo-box">
+      <img src="canbva.png" alt="Canva">
+    </div>
+    <span>Canva</span>
+  </div>
+
+  <div class="tech-card">
+    <div class="logo-box">
+      <img src="figma.png" alt="Figma">
+    </div>
+    <span>Figma</span>
+  </div>
+
+  <div class="tech-card">
+    <div class="logo-box">
+      <img src="potosop.png" alt="Photoshop">
+    </div>
+    <span>Photoshop</span>
+  </div>
+
+  <div class="tech-card">
+    <div class="logo-box">
+      <img src="capit.png" alt="CapCut">
+    </div>
+    <span>CapCut</span>
+  </div>
+
+  <div class="tech-card">
+    <div class="logo-box">
+      <img src="afiiniti.png" alt="Affinity">
+    </div>
+    <span>Affinity</span>
+  </div>
+
+</div>
+
+</div>
+
+
+        <h3 class="skill-title" style="margin-top:24px">Interest</h3>
+        <p class="skill-text">Design  • Photographer • Videographer</p>
+      </div>
+
+      <!-- RIGHT -->
+      <div>
+        <h3 class="skill-title">Soft Skill</h3>
+        <div class="two-col">
+          <span>Teamwork</span>
+          <span>Critical Thinking</span>
+          <span>Communication</span>
+          <span>Time Management</span>
+        </div>
+
+        <h3 class="skill-title" style="margin-top:24px">Skill Set</h3>
+        <div class="two-col">
+          <span>Photographer</span>
+        
+          <span>Social Media Design</span>
+          <span>Video Editing</span>
+         
+          <span>Videographer</span>
+        </div>
+        <h3 class="skill-title" style="margin-top:24px">Technical Skill Level</h3>
+
+<div class="tech-progress">
+
+  <div class="tech-row">
+    <img src="canbva.png" alt="Canva">
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Canva</span>
+        <span>90%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width:90%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tech-row">
+    <img src="figma.png" alt="Figma">
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Figma</span>
+        <span>65%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width:65%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tech-row">
+    <img src="potosop.png" alt="Photoshop">
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Photoshop</span>
+        <span>65%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width:75%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tech-row">
+    <img src="capit.png" alt="CapCut">
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>CapCut</span>
+        <span>90%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width:90%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tech-row">
+    <img src="afiiniti.png" alt="Affinity">
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Affinity</span>
+        <span>90%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width:90%"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+        <h3 class="skill-title" style="margin-top:24px">Language</h3>
+        <p class="skill-text">Indonesia (Native) • English (Basic)</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div>© 2025 Bowo Lubis</div>
+</footer>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="closeModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close" onclick="closeModal()">✕</span>
+    <img id="modalImg">
+    <div class="modal-body">
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc" style="color:var(--muted)"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openModal(el, title, desc){
+    document.getElementById("modalImg").src =
+      el.querySelector("img").src;
+    document.getElementById("modalTitle").innerText = title;
+    document.getElementById("modalDesc").innerText = desc;
+    document.getElementById("modal").classList.add("show");
+  }
+
+  function closeModal(){
+    document.getElementById("modal").classList.remove("show");
+  }
+
+  function logout(){
+    localStorage.removeItem("isLogin");
+    window.location.href = "login.html";
+  }
+</script>
+
+</body>
+</html>

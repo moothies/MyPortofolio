@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portfolio — Bowo Lubis</title>
+
+<style>
+:root{
+  --bg:#020617;
+  --card:rgba(15,23,42,.65);
+  --muted:#94a3b8;
+  --accent:#7c3aed;
+  --glass:rgba(255,255,255,.06);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  color:#e5e7eb;
+  padding:32px;
+  overflow-x:hidden;
+}
+
+/* ===== BACKGROUND VIDEO (ASLI) ===== */
+.bg-video{position:fixed;inset:0;z-index:-3}
+.bg-video video{width:100%;height:100%;object-fit:cover}
+.bg-overlay{
+  position:fixed;inset:0;
+  background:linear-gradient(180deg,rgba(2,6,23,.7),rgba(2,6,23,.95));
+  z-index:-2;
+}
+.bg-glow{
+  position:fixed;inset:0;
+  background:
+    radial-gradient(circle at top, rgba(124,58,237,.35), transparent 45%),
+    radial-gradient(circle at bottom, rgba(99,102,241,.25), transparent 50%);
+  z-index:-1;
+}
+
+/* ===== LAYOUT ===== */
+.container{max-width:1100px;margin:auto}
+
+/* ===== HEADER ===== */
+header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:36px;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:48px;height:48px;border-radius:12px;
+  background:linear-gradient(135deg,#7c3aed,#4f46e5);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;
+}
+nav a{
+  margin-left:18px;
+  color:var(--muted);
+  font-size:14px;
+  text-decoration:none;
+}
+nav a:hover{color:#fff}
+
+/* ===== CARD (GLOBAL) ===== */
+.card{
+  background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  padding:20px;
+  backdrop-filter:blur(14px);
+  transition:.35s;
+}
+.card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(124,58,237,.5);
+  box-shadow:0 30px 70px rgba(0,0,0,.6);
+}
+
+/* ===== HERO ===== */
+.hero{
+  display:flex;
+  gap:32px;
+  align-items:center;
+}
+.hero-left{flex:1}
+.hero h1{
+  margin:0 0 10px;
+  font-size:30px;
+  background:linear-gradient(135deg,#a78bfa,#7c3aed);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.lead{color:var(--muted);line-height:1.7}
+
+/* ===== BUTTON ===== */
+.btn{
+  display:inline-block;
+  padding:12px 18px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#7c3aed,#4f46e5);
+  color:white;
+  font-weight:600;
+  text-decoration:none;
+  margin-right:8px;
+  transition:.3s;
+}
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 20px 40px rgba(124,58,237,.45);
+}
+.btn.secondary{
+  background:transparent;
+  border:1px solid rgba(255,255,255,.15);
+  color:var(--muted);
+}
+.btn.secondary:hover{
+  background:rgba(255,255,255,.08);
+  color:#fff;
+}
+
+/* ===== AVATAR ===== */
+.hero-right{width:240px}
+.avatar{
+  width:100%;
+  height:220px;
+  border-radius:14px;
+  overflow:hidden;
+}
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.4s;
+}
+.avatar:hover img{transform:scale(1.05)}
+
+.meta{
+  display:flex;
+  justify-content:space-between;
+  margin-top:12px;
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* ===== SECTION ===== */
+section{margin-top:40px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+.project h4{margin:0 0 6px}
+
+/* ===== FOOTER ===== */
+footer{
+  margin-top:50px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:var(--muted);
+}
+
+/* ===== ANIMATION (ASLI) ===== */
+.fade-up{opacity:0;transform:translateY(12px);transition:.45s}
+.fade-up.show{opacity:1;transform:none}
+
+@media(max-width:720px){
+  .hero{flex-direction:column}
+  nav{display:none}
+}
+/* ===== SKILL BAR ===== */
+.skill{
+  margin-bottom:14px;
+}
+.skill-title{
+  display:flex;
+  justify-content:space-between;
+  font-size:14px;
+  margin-bottom:6px;
+  color:#e5e7eb;
+}
+.skill-bar{
+  width:100%;
+  height:10px;
+  background:rgba(255,255,255,.12);
+  border-radius:999px;
+  overflow:hidden;
+}
+.skill-fill{
+  height:100%;
+  background:linear-gradient(90deg,#7c3aed,#4f46e5);
+  border-radius:999px;
+  width:0;
+  transition:1s ease;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg-video">
+  <video autoplay muted loop playsinline>
+    <source src="space.mp4" type="video/mp4">
+  </video>
+</div>
+<div class="bg-overlay"></div>
+<div class="bg-glow"></div>
+
+<div class="container">
+
+<header>
+  <div class="brand">
+    <div class="logo">BL</div>
+    <div>
+      <strong>Bowo Lubis</strong><br>
+      <small style="color:var(--muted)">Creative Digital</small>
+    </div>
+  </div>
+  
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-left card fade-up">
+    <h1>Olá, saya Bowo Lubis — Creative Digital</h1>
+    <p class="lead">
+     Saya membantu brand, UMKM, dan personal brand mengembangkan akun media sosial lewat konten yang relevan, visual yang kuat, dan strategi yang disesuaikan dengan karakter audiens. Fokus saya bukan sekadar posting, tapi menciptakan konten yang punya dampak dan tujuan jelas.
+    </p>
+    <div style="margin-top:16px">
+      <a class="btn" href="portfolio.html">My Project</a>
+      <a class="btn secondary" href="contact.html">Hubungi</a>
+    </div>
+  </div>
+
+  <aside class="hero-right card fade-up">
+    <div class="avatar">
+      <img src="woks.jpeg" alt="Foto Bowo Lubis">
+    </div>
+    <div class="meta">
+      <div><strong>1+</strong><br>Pengalaman</div>
+      <div><strong>1k</strong><br>Total reach</div>
+    </div>
+  </aside>
+</section>
+
+<section id="about">
+  <div class="card fade-up">
+    <h3>Tentang Saya</h3>
+    <p class="lead">
+      Saya adalah mahasiswa Teknik Informatika dengan fokus dan minat kuat di bidang creative digital. Terbiasa menggabungkan pemikiran logis dengan pendekatan visual yang strategis, saya mampu menciptakan karya kreatif yang tidak hanya menarik secara estetika, tetapi juga efektif secara fungsi dan tujuan. Saya terus mengembangkan skill di bidang desain, konten digital, dan pengolahan visual untuk menghasilkan solusi kreatif yang relevan dengan kebutuhan brand maupun audiens.
+    </p>
+  </div>
+</section>
+<section id="experience">
+  <div class="card fade-up">
+    <h3>Pengalaman Kerja & Studi</h3>
+
+    <!-- EXPERIENCE -->
+    <div style="margin-top:14px">
+      <h4 style="margin-bottom:4px"> Designer (Freelance)</h4>
+      <small style="color:var(--muted)">2024 — Now</small>
+      <p class="lead" style="margin-top:6px">
+        Mengelola konten media sosial untuk UMKM dan personal brand, mulai dari perencanaan konten, desain visual, penulisan caption, hingga evaluasi performa. Fokus pada peningkatan engagement, reach, dan brand awareness melalui konten yang relevan dengan audiens.
+      </p>
+    </div>
+    <div style="margin-top:14px">
+      <h4 style="margin-bottom:4px">Bidang Infokom, Media, Kreatif (PDD) – HIPMI PT Harapan </h4>
+      <small style="color:var(--muted)">February 2025 — February 2026</small>
+      <p class="lead" style="margin-top:6px">
+       Saya memiliki pengalaman aktif sebagai bagian dari PDD (Publikasi, Dokumentasi, dan Desain) di organisasi HIPMI PT Harapan. Dalam peran ini, saya bertanggung jawab mengelola kebutuhan media dan visual organisasi, mulai dari perencanaan konten, dokumentasi kegiatan, hingga publikasi di berbagai platform digital.
+      </p>
+    </div>
+  <div style="margin-top:14px">
+      <h4 style="margin-bottom:4px">Digital Marketing </h4>
+      <small style="color:var(--muted)">February 2025 — June 2025</small>
+      <p class="lead" style="margin-top:6px">
+        Bertanggung jawab mengelola dan mengembangkan digital marketing coffee shop melalui strategi konten, pengelolaan media sosial, produksi konten foto dan video, serta pelaksanaan campaign promosi. Fokus pada peningkatan brand awareness, engagement, dan pertumbuhan audiens dengan tetap menjaga identitas dan karakter brand.
+      </p>
+    </div>
+    <!-- STUDY -->
+    <div style="margin-top:18px">
+      <h4 style="margin-bottom:4px">Mahasiswa Teknik Informatika</h4>
+      <small style="color:var(--muted)">Universitas Harapan Medan — 2023 - Now</small>
+      <p class="lead" style="margin-top:6px">
+        Mempelajari dasar pemrograman, logika sistem, dan pengembangan teknologi informasi. Mengombinasikan latar belakang teknis dengan kreativitas digital untuk menghasilkan solusi visual dan konten yang fungsional serta strategis.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section id="work">
+  <h3>Portofolio — Project </h3>
+  <div class="grid">
+    <div class="card project fade-up">
+      <h4>Dokumentasi Organisasi</h4>
+      <p class="lead">Berpengalaman dalam dokumentasi foto kegiatan organisasi dengan pendekatan visual yang rapi dan profesional. Mampu menangkap momen penting, mengolahnya menjadi konten bernilai publikasi, serta mendukung branding dan citra organisasi secara konsisten.</p>
+    </div>
+    <div class="card project fade-up">
+      <h4>Short Movie Tiktok</h4>
+      <p class="lead">Berpengalaman memproduksi short movie untuk TikTok yang dirancang khusus untuk menarik perhatian di detik pertama, membangun emosi, dan menyampaikan pesan brand secara efektif. Menggabungkan storytelling singkat, visual yang kuat, dan editing dinamis untuk menghasilkan konten yang relevan dengan tren serta mampu meningkatkan engagement audiens.</p>
+    </div>
+    <div class="card project fade-up">
+      <h4>Video Dokumentasi</h4>
+      <p class="lead">Berpengalaman dalam produksi video dokumentasi kegiatan organisasi, mulai dari pengambilan gambar hingga proses editing. Mampu menyajikan rangkuman visual yang informatif, rapi, dan memiliki alur cerita untuk mendukung publikasi serta citra profesional organisasi.</p>
+    </div>
+  </div>
+</section>
+<div class="card fade-up" style="margin-top:20px">
+  <h4>Skill & Kontribusi</h4>
+
+  <div class="skill">
+    <div class="skill-title">
+      <span>Content Strategy</span>
+      <span>85%</span>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-fill" style="width:85%"></div>
+    </div>
+  </div>
+
+  <div class="skill">
+    <div class="skill-title">
+      <span>Instagram Reels</span>
+      <span>90%</span>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-fill" style="width:90%"></div>
+    </div>
+  </div>
+
+  <div class="skill">
+    <div class="skill-title">
+      <span>TikTok Content</span>
+      <span>88%</span>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-fill" style="width:88%"></div>
+    </div>
+  </div>
+
+  <div class="skill">
+    <div class="skill-title">
+      <span>Visual Design</span>
+      <span>80%</span>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-fill" style="width:80%"></div>
+    </div>
+  </div>
+</div>
+
+<section id="contact">
+  <div class="card fade-up">
+    <h3>Kontak</h3>
+    <p class="lead">
+      Email: <a href="mailto:bowoh457@gmail.com" style="text-decoration:underline">bowoh457@gmail.com</a>
+    </p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>© 2025 Bowo Lubis</span>
+  <button class="btn secondary" onclick="logout()">Logout</button>
+</footer>
+
+</div>
+
+<script>
+function logout(){
+  localStorage.removeItem("isLogin");
+  window.location.href="login.html";
+}
+
+/* ANIMASI ASLI */
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.fade-up').forEach((el,i)=>{
+    setTimeout(()=>el.classList.add('show'),110*i);
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const target=document.querySelector(a.getAttribute('href'));
+      if(target){
+        e.preventDefault();
+        target.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>
